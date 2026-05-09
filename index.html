@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Premium Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body data-theme="candy">
+    <!-- Background elements -->
+    <div class="bg-particles" id="bg-particles"></div>
+
+    <div id="app">
+        <!-- SPLASH SCREEN -->
+        <section id="screen-splash" class="screen active">
+            <div class="splash-decor">
+                <span class="splash-icon icon-tl">🧸</span>
+                <span class="splash-icon icon-tr">⭐</span>
+                <span class="splash-icon icon-ml">✕</span>
+                <span class="splash-icon icon-mr">🌸</span>
+                <span class="splash-icon icon-bl">🍄</span>
+                <span class="splash-icon icon-br">⬡</span>
+            </div>
+            <div class="title-container">
+                <h1 class="animated-title">
+                    <span>T</span><span>I</span><span>C</span><br>
+                    <span>T</span><span>A</span><span>C</span><br>
+                    <span>T</span><span>O</span><span>E</span>
+                </h1>
+            </div>
+            <div class="menu-buttons">
+                <button class="btn btn-primary" id="btn-vs-cpu">Play With Computer</button>
+                <button class="btn btn-secondary" id="btn-vs-local">Local Multiplayer</button>
+            </div>
+            <button class="btn-icon toggle-sound" aria-label="Toggle Sound">🔊</button>
+        </section>
+
+        <!-- THEME SELECTION -->
+        <section id="screen-theme" class="screen">
+            <button class="btn-back btn-icon" id="btn-back-theme">⬅</button>
+            <h2>Select Theme</h2>
+            <div class="theme-grid">
+                <div class="theme-card" data-theme="candy">
+                    <div class="theme-preview candy-preview">
+                        <span>X</span><span>O</span>
+                    </div>
+                    <h3>Candy Pop</h3>
+                </div>
+                <div class="theme-card" data-theme="ocean">
+                    <div class="theme-preview ocean-preview">
+                        <span>🌊</span><span>🐚</span>
+                    </div>
+                    <h3>Ocean Shell</h3>
+                </div>
+                <div class="theme-card" data-theme="neon">
+                    <div class="theme-preview neon-preview">
+                        <span>X</span><span>O</span>
+                    </div>
+                    <h3>Neon Esports</h3>
+                </div>
+                <div class="theme-card" data-theme="nature">
+                    <div class="theme-preview nature-preview">
+                        <span>🐻</span><span>🌲</span>
+                    </div>
+                    <h3>Nature Forest</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLAYER SETUP -->
+        <section id="screen-setup" class="screen">
+            <button class="btn-back btn-icon" id="btn-back-setup">⬅</button>
+            <h2>Player Setup</h2>
+            <div class="setup-card">
+                <label class="setup-label" for="input-player-1">Player 1 Name</label>
+                <input id="input-player-1" class="setup-input" maxlength="16" placeholder="Player 1">
+
+                <label class="setup-label" for="input-player-2" id="label-player-2">Player 2 Name</label>
+                <input id="input-player-2" class="setup-input" maxlength="16" placeholder="Player 2">
+
+                <div class="symbol-picker-wrap">
+                    <div class="symbol-player">
+                        <p id="symbol-title-1">Player 1 Symbol</p>
+                        <div id="symbols-player-1" class="symbol-grid"></div>
+                    </div>
+                    <div class="symbol-player" id="symbol-player-2-wrap">
+                        <p id="symbol-title-2">Player 2 Symbol</p>
+                        <div id="symbols-player-2" class="symbol-grid"></div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="btn-start-game">Start Game</button>
+        </section>
+
+        <!-- DIFFICULTY SELECTION -->
+        <section id="screen-difficulty" class="screen">
+            <button class="btn-back btn-icon" id="btn-back-diff">⬅</button>
+            <h2>Select Difficulty</h2>
+            <div class="menu-buttons">
+                <button class="btn btn-diff btn-primary" data-diff="easy">Easy (Random)</button>
+                <button class="btn btn-diff btn-secondary" data-diff="medium">Medium (Smart)</button>
+                <button class="btn btn-diff btn-primary" data-diff="hard" style="filter: hue-rotate(45deg);">Hard (Unbeatable)</button>
+            </div>
+        </section>
+
+        <!-- GAME SCREEN -->
+        <section id="screen-game" class="screen">
+            <div class="top-bar">
+                <button class="btn-icon" id="btn-home" aria-label="Home">🏠</button>
+                <div class="turn-indicator" id="turn-indicator">Player X's Turn</div>
+                <div class="score-tracker">
+                    <div class="score-box"><span id="score-label-x">X</span>: <span id="score-x">0</span></div>
+                    <div class="score-box"><span id="score-label-o">O</span>: <span id="score-o">0</span></div>
+                </div>
+                <button class="btn-icon toggle-sound" aria-label="Toggle Sound">🔊</button>
+            </div>
+
+            <div class="board-container">
+                <div class="board" id="board">
+                    <div class="cell" data-index="0"></div>
+                    <div class="cell" data-index="1"></div>
+                    <div class="cell" data-index="2"></div>
+                    <div class="cell" data-index="3"></div>
+                    <div class="cell" data-index="4"></div>
+                    <div class="cell" data-index="5"></div>
+                    <div class="cell" data-index="6"></div>
+                    <div class="cell" data-index="7"></div>
+                    <div class="cell" data-index="8"></div>
+                </div>
+            </div>
+
+            <div class="bottom-bar">
+                <button class="btn btn-secondary" id="btn-restart">Restart</button>
+                <button class="btn btn-secondary" id="btn-change-theme">Themes</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- WINNER MODAL -->
+    <div id="modal-winner" class="modal">
+        <div class="modal-content">
+            <h2 id="winner-text">Player X Wins!</h2>
+            <div class="winner-animation" id="winner-animation">🎉</div>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="btn-play-again">Play Again</button>
+                <button class="btn btn-secondary" id="btn-modal-theme">Change Theme</button>
+                <button class="btn btn-secondary" id="btn-modal-home">Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
